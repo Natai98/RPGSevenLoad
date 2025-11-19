@@ -131,8 +131,13 @@ public class PlayerControl : DamagableCtrl
 
     private void Attack()
     {
+        bool checkMon = false;
+        if (GameManager.Instance.curScene == sceneNumber.Dungeon)
+        {
+            checkMon = hitObject.collider.transform.root.GetComponent<DamagableCtrl>().statData.MonsterName == "FireDog";
+        }
+            
         float distance = Vector3.Distance(hitObject.collider.gameObject.transform.position, transform.position);
-        bool checkMon = hitObject.collider.transform.root.GetComponent<DamagableCtrl>().statData.MonsterName == "FireDog";
         float addDis = checkMon ? 2.0f : 0f;
         if (!isbattle || distance > statData.AttackRange + addDis) return;
 
