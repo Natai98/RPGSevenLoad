@@ -68,6 +68,7 @@ public class InventoryView : MonoBehaviour
             isOpened = !isOpened;
             invevtoryPannal.SetActive(isOpened);
             GetComponent<PlayerMove>().isMove = !isOpened;
+            
         }
     }
 }
