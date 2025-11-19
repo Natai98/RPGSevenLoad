@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434c978a1d940e646a46f02290f2858b, type: 3}
+  m_Name: OnigiriSO
+  m_EditorClassIdentifier: 
+  item_Id: 101
+  item_Name: Onigiri
+  item_Image: {fileID: 21300078, guid: 37607ec1aab56e349af84a980f685a4b, type: 3}
+  max_Count: 99
+  item_Type: 1
+  item_Effect: 5
+  itemDescription: "\uB530\uB73B\uD55C \uBC25\uC73C\uB85C \uB9CC\uB4E4\uC5B4\uC9C4\n\uB9DB\uC788\uB294
+    \uC8FC\uBA39\uBC25\n(\uCD5C\uB300\uCCB4\uB825 5 \uC0C1\uC2B9)"
+  food_Effect: 5
+  food_Type: 0

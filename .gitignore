@@ -1,0 +1,21 @@
+# Unity Generated Files
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+
+# Visual Studio & IDE cache files
+.vs/
+*.csproj
+*.unityproj
+*.sln
+
+# macOS specific files
+.DS_Store
+
+# Other common Unity ignores
+AssetStoreTools/
+ProjectSettings/EditorSettings.asset # 이 파일은 개인 설정이므로 공유하지 않는 것이 일반적입니다.
