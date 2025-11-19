@@ -12,6 +12,11 @@ public class InventoryManager : Singleton<InventoryManager>
         InitializeInventory();
     }
 
+    private void OnDestroy()
+    {
+        inventorySlots = null;
+    }
+
     private void InitializeInventory()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
