@@ -12,7 +12,7 @@ public class InventoryManager : Singleton<InventoryManager>
         InitializeInventory();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         inventorySlots = null;
     }
