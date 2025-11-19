@@ -26,12 +26,15 @@ public class GameManager : Singleton<GameManager>
 
     [Header("씬 관련")]
     public bool isNext = false;
+    public sceneNumber curScene = new sceneNumber();
 
     private void Start()
     {
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
         money = 0;
+
+        curScene = sceneNumber.Tutorial;
     }
 
     public void PayMoney(int _cost)
