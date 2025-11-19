@@ -50,21 +50,27 @@ public class GameManager : Singleton<GameManager>
         {
             case sceneNumber.Tutorial:
                 SceneManager.LoadScene("02_Tutorial");
+                curScene = sceneNumber.Tutorial;
                 break;
             case sceneNumber.Village:
                 SceneManager.LoadScene("03_Village");
+                curScene = sceneNumber.Village;
                 break;
             case sceneNumber.Field:
                 SceneManager.LoadScene("04_Field");
+                curScene = sceneNumber.Field;
                 break;
             case sceneNumber.FrontDungeon:
                 SceneManager.LoadScene("05_FrontDungeon");
+                curScene = sceneNumber.FrontDungeon;
                 break;
             case sceneNumber.Dungeon:
                 SceneManager.LoadScene("06_Dungeon");
+                curScene = sceneNumber.Dungeon;
                 break;
             case sceneNumber.AfterDungeon:
                 SceneManager.LoadScene("07_AfterDungeon");
+                curScene = sceneNumber.AfterDungeon;
                 break;
         }
     }
