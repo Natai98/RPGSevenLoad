@@ -11,7 +11,7 @@ public class TitleManager : MonoBehaviour
     {
         if (nickName.text != null)
         {
-            SceneManager.LoadScene("02_Field");
+            SceneManager.LoadScene("02_Tutorial");
             GameManager.Instance.playerName = nickName.text;
         }
     }
