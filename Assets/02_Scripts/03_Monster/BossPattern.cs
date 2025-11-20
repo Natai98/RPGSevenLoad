@@ -8,7 +8,7 @@ public class BossPattern : DamagableCtrl
     public BossState bossState = BossState.Idle;
     [SerializeField] private Slider currentBar;
     [SerializeField] private Slider realBar;
-    [SerializeField] private Canvas firedogUI;
+    [SerializeField] private Canvas bossUI;
 
     public bool isGrog = false;
     private float shieldHP = 100f;
@@ -23,11 +23,16 @@ public class BossPattern : DamagableCtrl
                 currentBar.gameObject.SetActive(false);
             }
             HP.ModifyHealth(shieldHP, 100f);
-            Debug.Log("crrentHP : " + shieldHP);
         }
         else
         {
-            
+            currentHP -= damage;
+            if(currentHP <= 0f)
+            {
+                currentHP = 0f;
+                realBar.gameObject.SetActive(false);
+            }
+            HP.ModifyHealth(currentHP, statData.HP);
         }
     }
 
