@@ -31,7 +31,6 @@ public class FireDogControl : DamagableCtrl
     [SerializeField] private Slider currentBar;
     [SerializeField] private Slider realBar;
     [SerializeField] private Canvas firedogUI;
-    private PlayerControl player;
     private float tikTime = 0f;
     private bool isAttack = false;
     public bool isbattle = false;
@@ -42,7 +41,6 @@ public class FireDogControl : DamagableCtrl
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
         anim = GetComponent<Animator>();
         InitData();
         realHP = statData.HP;

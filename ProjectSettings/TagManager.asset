@@ -21,6 +21,7 @@ TagManager:
   - SpawnPoint
   - CookSpot
   - Coin
+  - Shield
   layers:
   - Default
   - TransparentFX
