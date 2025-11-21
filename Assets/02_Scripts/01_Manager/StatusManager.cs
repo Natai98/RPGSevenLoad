@@ -7,9 +7,22 @@ public class StatusManager : MonoBehaviour, IDamaged
     [SerializeField] private Slider notGrogSlider;
     public virtual void OnHealthChange(float newHealth)
     {
-        if (GetComponent<FireDogControl>() != null || GetComponent<BossPattern>() != null)
+        if (GetComponent<FireDogControl>() != null)
         {
-            bool grog = GetComponent<FireDogControl>().isGrog || GetComponent<BossPattern>().isGrog;
+            bool grog = GetComponent<FireDogControl>().isGrog;
+            // Debug.Log("현재 상태 : " + DungeonManager.Instance.fireDogGrog);
+            if (grog || DungeonManager.Instance.fireDogGrog)
+            {
+                realSlider.value = newHealth;
+            }
+            else
+            {
+                notGrogSlider.value = newHealth;
+            }
+        }
+        else if (GetComponent<BossPattern>() != null)
+        {
+            bool grog = GetComponent<BossPattern>().isGrog;
             // Debug.Log("현재 상태 : " + DungeonManager.Instance.fireDogGrog);
             if (grog || DungeonManager.Instance.fireDogGrog)
             {

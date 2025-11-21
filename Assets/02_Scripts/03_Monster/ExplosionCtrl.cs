@@ -10,7 +10,7 @@ public class ExplosionCtrl : MonoBehaviour
         if (Vector3.Distance(transform.position, GameManager.Instance.player.transform.position) <= distance)
         {
             GameManager.Instance.player.TakeDamage(10.0f);
-            Debug.Log("Player가 폭발 데미지를 입었습니다.");
+            //Debug.Log("Player가 폭발 데미지를 입었습니다.");
         }
         GameObject exp = Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(exp, 2.0f);

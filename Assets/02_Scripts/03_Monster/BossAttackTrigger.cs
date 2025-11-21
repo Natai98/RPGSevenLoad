@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class BossAttackTrigger : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Animator anim;
+    private BossState state;
+
+    private void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        state = transform.parent.GetComponent<BossPattern>().bossState;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void IdleToAttack()
     {
-        
+        if(!DungeonManager.Instance.bossTrigger || state != BossState.Idle) return;
+
+        if (DungeonManager.Instance.inShield)
+        {
+            
+        }
     }
 }
