@@ -14,4 +14,9 @@ public class ThunderCtrl : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         Destroy(this.gameObject, 0.1f);
     }
+
+    private void OnDisable()
+    {
+        Destroy(this.gameObject);
+    }
 }

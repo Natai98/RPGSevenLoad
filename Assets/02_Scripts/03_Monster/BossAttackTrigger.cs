@@ -1,9 +1,16 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class BossAttackTrigger : MonoBehaviour
 {
+    [SerializeField] private GameObject thunder;
+    [SerializeField] private GameObject around;
+
+    private GameObject aroundImp;
     private Animator anim;
     private BossState state;
+    private int count = 3;
 
     private void Start()
     {
@@ -13,11 +20,66 @@ public class BossAttackTrigger : MonoBehaviour
 
     private void IdleToAttack()
     {
-        if(!DungeonManager.Instance.bossTrigger || state != BossState.Idle) return;
+        if(!DungeonManager.Instance.bossTrigger) return;
 
+        if(state == BossState.Idle)
+        {
+            if (DungeonManager.Instance.inShield)
+            {
+                aroundImp = Instantiate(around, transform.parent.position, Quaternion.identity);
+            }
+            state = BossState.Attack;
+            count = 3;
+        }
+        else if(state == BossState.Attack)
+        {
+            if(count <= 0)
+            {
+                anim.SetTrigger("Attack");
+            }
+            else
+            {
+                count--;
+            }
+        }
+        
+        
+
+
+
+        
+        
+    }
+
+    private void AttackToIdleInShield()
+    {
+        Destroy(aroundImp);
         if (DungeonManager.Instance.inShield)
         {
-            
+            GameManager.Instance.player.TakeDamage(30f);
+        }
+        state = BossState.Idle;
+        DungeonManager.Instance.bossTrigger = false;
+        count = 3;
+    }
+
+    private void ThunderAttack()
+    {
+        StartCoroutine(SpawnThunder());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
+    private IEnumerator SpawnThunder()
+    {
+        yield return null;
+        for (int i = 0; i < 3; i++)
+        {
+            Instantiate(thunder, GameManager.Instance.player.transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.3f);
         }
     }
 }

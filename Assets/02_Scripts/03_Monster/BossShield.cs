@@ -15,7 +15,7 @@ public class BossShield : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Playr"))
+        if (other.gameObject.CompareTag("Player"))
         {
             bossAnim.SetBool("Around", false);
             DungeonManager.Instance.inShield = false;

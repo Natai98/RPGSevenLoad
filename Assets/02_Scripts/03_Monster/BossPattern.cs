@@ -66,7 +66,7 @@ public class BossPattern : DamagableCtrl
         switch (bossState)
         {
             case BossState.Idle:
-                tikTime += Time.deltaTime;
+                if(!DungeonManager.Instance.bossTrigger) tikTime += Time.deltaTime;
                 if(tikTime > 10f)
                 {
                     DungeonManager.Instance.bossTrigger = true;
@@ -74,6 +74,7 @@ public class BossPattern : DamagableCtrl
                 }
                 break;
             case BossState.Attack:
+                tikTime = 0f;
                 break;
             case BossState.Grog:
                 tikTime += Time.deltaTime;
