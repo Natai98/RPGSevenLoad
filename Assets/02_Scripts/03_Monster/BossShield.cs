@@ -9,6 +9,7 @@ public class BossShield : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             bossAnim.SetBool("Around", true);
+            DungeonManager.Instance.inShield = true;
         }
     }
 
@@ -17,6 +18,7 @@ public class BossShield : MonoBehaviour
         if (other.gameObject.CompareTag("Playr"))
         {
             bossAnim.SetBool("Around", false);
+            DungeonManager.Instance.inShield = false;
         }
     }
 }
