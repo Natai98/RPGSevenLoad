@@ -7,6 +7,7 @@ public class DungeonManager : Singleton<DungeonManager>
     public bool bossGrog = false;
     public bool inShield = false;
     public bool bossTrigger = false;
+    public bool bossWarning = false;
 
     [Header("던전 기믹 관련")]
     public bool pannalClear = false;

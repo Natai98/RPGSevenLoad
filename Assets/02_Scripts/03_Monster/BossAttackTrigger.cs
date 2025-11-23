@@ -27,6 +27,12 @@ public class BossAttackTrigger : MonoBehaviour
             if (DungeonManager.Instance.inShield)
             {
                 aroundImp = Instantiate(around, transform.parent.position, Quaternion.identity);
+                anim.SetInteger("Pattern", 0);
+            }
+            else
+            {
+                DungeonManager.Instance.bossWarning = true;
+                anim.SetInteger("Pattern", 1);
             }
             state = BossState.Attack;
             count = 3;
@@ -55,6 +61,18 @@ public class BossAttackTrigger : MonoBehaviour
     {
         Destroy(aroundImp);
         if (DungeonManager.Instance.inShield)
+        {
+            GameManager.Instance.player.TakeDamage(30f);
+        }
+        state = BossState.Idle;
+        DungeonManager.Instance.bossTrigger = false;
+        count = 3;
+    }
+
+    private void AttackToIdleOutShield()
+    {
+        DungeonManager.Instance.bossWarning = false;
+        if (!DungeonManager.Instance.inShield)
         {
             GameManager.Instance.player.TakeDamage(30f);
         }
