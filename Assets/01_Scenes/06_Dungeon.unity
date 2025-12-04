@@ -28302,6 +28302,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2551425398256559428, guid: 8c411cb12e134904a837aee2637f762c, type: 3}
   m_PrefabInstance: {fileID: 1587298195}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1587347100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1587347101}
+  m_Layer: 0
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1587347101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587347100}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1661727353}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1589362788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29342,6 +29373,7 @@ Transform:
   - {fileID: 696694408}
   - {fileID: 732273732}
   - {fileID: 1453839145}
+  - {fileID: 1587347101}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1669720452 stripped
@@ -63941,9 +63973,14 @@ MonoBehaviour:
   - {fileID: 5714240477436050681}
   - {fileID: 5714240477343819126}
   - {fileID: 5714240477829661098}
-  goblin: {fileID: 0}
-  spawnPoint: []
-  point: {fileID: 0}
+  goblin: {fileID: 1131627507144022536, guid: b6e4f90d342b5cb41a3f25a4732f3674, type: 3}
+  spawnPoint:
+  - {fileID: 534056046}
+  - {fileID: 1484301772}
+  - {fileID: 235681139}
+  - {fileID: 1062433445}
+  - {fileID: 1982462761}
+  point: {fileID: 1587347101}
 --- !u!4 &5799840786273409734
 Transform:
   m_ObjectHideFlags: 0
