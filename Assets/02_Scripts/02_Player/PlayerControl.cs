@@ -17,6 +17,7 @@ public class PlayerControl : DamagableCtrl
     private bool isMagic = false;
 
     private RaycastHit hitObject;
+    public bool checkmon = false;
 
     private void Start()
     {
@@ -130,15 +131,9 @@ public class PlayerControl : DamagableCtrl
     }
 
     private void Attack()
-    {
-        bool checkMon = false;
-        if (GameManager.Instance.curScene == sceneNumber.Dungeon)
-        {
-            checkMon = hitObject.collider.transform.root.GetComponent<DamagableCtrl>().statData.MonsterName == "FireDog";
-        }
-            
+    {       
         float distance = Vector3.Distance(hitObject.collider.gameObject.transform.position, transform.position);
-        float addDis = checkMon ? 2.0f : 0f;
+        float addDis = checkmon ? 2.0f : 0f;
         if (!isbattle || distance > statData.AttackRange + addDis) return;
 
         float playerAtk = statData.ATK + weaponAtk(WeaponManager.Instance.currentWeaponData());

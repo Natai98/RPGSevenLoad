@@ -13,13 +13,23 @@ public class RoomEightTrap : MonoBehaviour
     [SerializeField] private Transform[] spawnPoint;
     [SerializeField] private Transform point;
 
+    private bool roomOn = false;
+
+
+    private IEnumerator Start()
+    {
+        yield return null;
+        yield return new WaitUntil(() => roomOn);
+        StartCoroutine(MonsterSpawn());
+        StartCoroutine(Room8Trap());
+        yield return null;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(Room8Trap());
-            StartCoroutine(MonsterSpawn());
+            roomOn = true;
         }
     }
 
@@ -63,11 +73,11 @@ public class RoomEightTrap : MonoBehaviour
     private void SetExplosion()
     {
         int i = Random.Range(0, explPosition.Length -1);
-        Instantiate(explosion, explPosition[i].position, Quaternion.identity);
+        Instantiate(explosion, explPosition[i].position + new Vector3(0f, 0.3f, 0f), Quaternion.identity);
         int j = Random.Range(0, explPosition.Length -1);
-        Instantiate(explosion, explPosition[j].position, Quaternion.identity);
+        Instantiate(explosion, explPosition[j].position + new Vector3(0f, 0.3f, 0f), Quaternion.identity);
         int l = Random.Range(0, explPosition.Length -1);
-        Instantiate(explosion, explPosition[l].position, Quaternion.identity);
+        Instantiate(explosion, explPosition[l].position + new Vector3(0f, 0.3f, 0f), Quaternion.identity);
     }
 
     private void OnDisable()
