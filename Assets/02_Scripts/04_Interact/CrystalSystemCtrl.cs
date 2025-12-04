@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CrystalSystemCtrl : MonoBehaviour
 {
+    [SerializeField] private Transform Room8;
     private void Start()
     {
         StartCoroutine(CrySystem());
@@ -15,6 +16,8 @@ public class CrystalSystemCtrl : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         yield return new WaitUntil(() => GameManager.Instance.crystal >= 2);
         transform.GetChild(1).gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Room8.gameObject.SetActive(true);
         yield return null;
     }
 
