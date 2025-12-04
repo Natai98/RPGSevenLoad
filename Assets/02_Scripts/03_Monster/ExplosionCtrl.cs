@@ -5,6 +5,11 @@ public class ExplosionCtrl : MonoBehaviour
     [SerializeField] private GameObject explosion;
     private float distance = 1.0f;
 
+    private void Start()
+    {
+        Destroy(this.gameObject, 4.0f);
+    }
+
     private void OnDestroy()
     {
         if (Vector3.Distance(transform.position, GameManager.Instance.player.transform.position) <= distance)

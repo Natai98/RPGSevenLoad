@@ -43,7 +43,6 @@ public class FireDogSkill : MonoBehaviour
         {
             spawnPos[i] = GetRandomPos();
             boom[i] ??= Instantiate(pannal, spawnPos[i], Quaternion.identity);
-            Destroy(boom[i].gameObject, 4f);
         }
     }
 
