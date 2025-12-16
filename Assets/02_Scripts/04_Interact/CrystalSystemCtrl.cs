@@ -18,6 +18,8 @@ public class CrystalSystemCtrl : MonoBehaviour
         transform.GetChild(1).gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         Room8.gameObject.SetActive(true);
+        yield return new WaitUntil(() => GameManager.Instance.crystal >= 3);
+        transform.GetChild(2).gameObject.SetActive(true);
         yield return null;
     }
 

@@ -13,11 +13,15 @@ public class RoomEightTrap : MonoBehaviour
     [SerializeField] private Transform[] spawnPoint;
     [SerializeField] private Transform point;
 
+    [Header("Crystal")]
+    [SerializeField] private GameObject crystal;
+
     private bool roomOn = false;
 
 
     private IEnumerator Start()
     {
+        crystal.SetActive(false);
         yield return null;
         yield return new WaitUntil(() => roomOn);
         StartCoroutine(MonsterSpawn());
@@ -37,7 +41,7 @@ public class RoomEightTrap : MonoBehaviour
     {
         yield return null;
         yield return new WaitUntil(()=> trapStart);
-        while (true)
+        while (trapStart)
         {
             yield return new WaitForSeconds(5.0f);
             SetExplosion();
@@ -58,6 +62,8 @@ public class RoomEightTrap : MonoBehaviour
         SpawnMonster(5);
         yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(() => point.childCount == 0);
+        trapStart = false;
+        crystal.SetActive(true);
         yield return null;
     }
 

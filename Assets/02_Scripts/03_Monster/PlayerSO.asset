@@ -17,4 +17,4 @@ MonoBehaviour:
   atk: 1
   sightRange: 6
   speed: 3
-  attackRange: 1.2
+  attackRange: 1.5

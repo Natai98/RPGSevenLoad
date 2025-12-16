@@ -53,6 +53,7 @@ public class FireDogControl : DamagableCtrl
         {
             return;
         }
+        
         firedogUI.gameObject.SetActive(true);
 
         if (isAlive)
@@ -63,6 +64,7 @@ public class FireDogControl : DamagableCtrl
         {
             GameManager.Instance.player.checkmon = false;
         }
+
         IdleToAttack();
         CheckGrog();
     }

@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -127,6 +128,11 @@ public class PlayerControl : DamagableCtrl
                 hitObject = hit;
                 InteractObject();
             }
+            else
+            {
+                if(isbattle) anim.SetTrigger("Attack");
+            }
+            
         }
     }
 

@@ -9,7 +9,14 @@ public class ThrowItem : MonoBehaviour
     {
         foreach (var item in new List<GameObject>(items))
         {
-            Instantiate(item, this.transform.position, Quaternion.identity);
+            if (item.CompareTag("Coin"))
+            {
+                Instantiate(item, this.transform.position + new Vector3(0f, 1.0f, 0f), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(item, this.transform.position, Quaternion.identity);
+            }
             items.Remove(item);
         }
     }
