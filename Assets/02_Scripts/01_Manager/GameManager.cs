@@ -8,7 +8,8 @@ public enum sceneNumber : int
     Field = 2,
     FrontDungeon = 3,
     Dungeon = 4,
-    AfterDungeon = 5
+    AfterDungeon = 5,
+    Boss = 6
 }
 public class GameManager : Singleton<GameManager>
 {
@@ -27,6 +28,9 @@ public class GameManager : Singleton<GameManager>
     [Header("씬 관련")]
     public bool isNext = false;
     public sceneNumber curScene = new sceneNumber();
+
+    [Header("보스 관련")]
+    public bool bossBattle = false;
 
     private void Start()
     {
@@ -71,6 +75,10 @@ public class GameManager : Singleton<GameManager>
             case sceneNumber.AfterDungeon:
                 SceneManager.LoadScene("07_AfterDungeon");
                 curScene = sceneNumber.AfterDungeon;
+                break;
+            case sceneNumber.Boss:
+                SceneManager.LoadScene("08_Boss");
+                curScene = sceneNumber.Boss;
                 break;
         }
     }

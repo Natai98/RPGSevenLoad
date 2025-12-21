@@ -18,9 +18,18 @@ public class BossAttackTrigger : MonoBehaviour
         state = transform.parent.GetComponent<BossPattern>().bossState;
     }
 
+    private void Update()
+    {
+        if(state == BossState.Grog && aroundImp != null)
+        {
+            Destroy(aroundImp);
+        }
+    }
+
     private void IdleToAttack()
     {
-        if(!DungeonManager.Instance.bossTrigger) return;
+        if(!DungeonManager.Instance.bossTrigger || state == BossState.Grog) return;
+
 
         if(state == BossState.Idle)
         {

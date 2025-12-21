@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,12 +26,14 @@ public class BossPattern : DamagableCtrl
 
     public bool isGrog = false;
     private float shieldHP = 100f;
-    private float tikTime = 0f;
 
-    private void Start()
+    private IEnumerator Start()
     {
         anim = transform.GetChild(0).GetComponent<Animator>();
         InitData();
+        GameManager.Instance.player.checkboss = true;
+        yield return null;
+        StartCoroutine(FirstPhase());
     }
 
     private void Update()
@@ -42,17 +45,16 @@ public class BossPattern : DamagableCtrl
     {
         if(phase == 0)
         {
-            FirstPhase();
-            if(currentHP/statData.HP <= 0.7f)
-            {
-                bossState = BossState.Idle;
-                anim.SetTrigger("UnGrog");
-                shieldHP = 100f;
-                HP.ModifyHealth(shieldHP, 100f);
-                isGrog = false;
-                tikTime = 0f;
-                phase = 1;
-            }
+            anim.SetInteger("Phase", 0);
+            // if(currentHP/statData.HP <= 0.7f)
+            // {
+            //     bossState = BossState.Idle;
+            //     anim.SetTrigger("UnGrog");
+            //     shieldHP = 100f;
+            //     HP.ModifyHealth(shieldHP, 100f);
+            //     isGrog = false;
+            //     phase = 1;
+            // }
         }
         else if(phase == 1)
         {
@@ -60,40 +62,42 @@ public class BossPattern : DamagableCtrl
         }
     }
 
-    private void FirstPhase()
+    private void TriggerBoss()
     {
-        anim.SetInteger("Phase", 0);
-        switch (bossState)
+        if(bossState == BossState.Idle && !DungeonManager.Instance.bossTrigger)
         {
-            case BossState.Idle:
-                if(!DungeonManager.Instance.bossTrigger) tikTime += Time.deltaTime;
-                else
-                {
-                    tikTime = 0f;
-                }
+            DungeonManager.Instance.bossTrigger = true;
+        }
+    }
 
-                if(tikTime > 10f)
-                {
-                    DungeonManager.Instance.bossTrigger = true;
-                }
-                break;
-            case BossState.Attack:
-                tikTime = 0f;
-                break;
-            case BossState.Grog:
-                tikTime += Time.deltaTime;
-                if(tikTime >= 15f && currentHP > 0f)
-                {
+    private IEnumerator FirstPhase()
+    {
+        yield return null;
+        while(phase == 0)
+        {
+            switch (bossState)
+            {
+                case BossState.Idle:
+                    yield return new WaitUntil(() => !DungeonManager.Instance.bossTrigger);
+                    yield return new WaitForSeconds(10f);
+                    TriggerBoss();
+                    break;
+                case BossState.Attack:
+                    break;
+                case BossState.Grog:
+                    yield return new WaitUntil(() => isGrog);
+                    yield return new WaitForSeconds(15f);
+                    DungeonManager.Instance.bossTrigger = false;
                     isGrog = false;
-                    tikTime = 0f;
                     anim.SetTrigger("UnGrog");
                     shieldHP = 100f;
                     HP.ModifyHealth(shieldHP, 100f);
-                    
-                }
-                break;
-            default:
-                break;
+                    currentBar.gameObject.SetActive(true);
+                    bossState = BossState.Idle;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -105,11 +109,10 @@ public class BossPattern : DamagableCtrl
             if (shieldHP <= 0f)
             {
                 shieldHP = 0f;
-                tikTime = 0f;
                 currentBar.gameObject.SetActive(false);
                 anim.SetTrigger("Grog");
-                bossState = BossState.Grog;
                 isGrog = true;
+                bossState = BossState.Grog;
             }
             HP.ModifyHealth(shieldHP, 100f);
         }
@@ -120,6 +123,7 @@ public class BossPattern : DamagableCtrl
             {
                 currentHP = 0f;
                 realBar.gameObject.SetActive(false);
+                anim.SetTrigger("Dead");
                 bossState = BossState.Die;
             }
             HP.ModifyHealth(currentHP, statData.HP);

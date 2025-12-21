@@ -23,12 +23,16 @@ public class HitMonster : MonoBehaviour
             Debug.Log("몬스터를 찾을 수 없습니다.");
             return;
         }
-        if (hit.collider.gameObject.GetComponent<DamagableCtrl>() == null && hit.collider.gameObject.GetComponent<DummyCtrl>() == null)
-        {
-            Debug.Log("몬스터에 컴포넌트가 없습니다.");
-            return;
-        }
-        hit.collider.gameObject.GetComponent<DamagableCtrl>()?.TakeDamage(damage);
+
+        // if (hit.collider.gameObject.GetComponent<DamagableCtrl>() == null && hit.collider.gameObject.GetComponent<DummyCtrl>() == null)
+        // {
+        //     Debug.Log("몬스터에 컴포넌트가 없습니다.");
+        //     return;
+        // }
+        
+        if(GameManager.Instance.player.checkboss) hit.collider.transform.root.GetComponent<DamagableCtrl>()?.TakeDamage(damage);
+        else hit.collider.gameObject.GetComponent<DamagableCtrl>()?.TakeDamage(damage);
+
         hit.collider.gameObject.GetComponent<DummyCtrl>()?.DamagedDummy();
     }
 }

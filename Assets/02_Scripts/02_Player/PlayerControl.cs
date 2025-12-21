@@ -19,6 +19,7 @@ public class PlayerControl : DamagableCtrl
 
     private RaycastHit hitObject;
     public bool checkmon = false;
+    public bool checkboss = false;
 
     private void Start()
     {
@@ -139,8 +140,9 @@ public class PlayerControl : DamagableCtrl
     private void Attack()
     {       
         float distance = Vector3.Distance(hitObject.collider.gameObject.transform.position, transform.position);
-        float addDis = checkmon ? 2.0f : 0f;
-        if (!isbattle || distance > statData.AttackRange + addDis) return;
+        float addDis_01 = checkmon ? 2.0f : 0f;
+        float addDis_02 = checkboss ? 5.0f : 0f;
+        if (!isbattle || distance > statData.AttackRange + addDis_01 + addDis_02) return;
 
         float playerAtk = statData.ATK + weaponAtk(WeaponManager.Instance.currentWeaponData());
         Vector3 dir = -transform.position + hitObject.collider.transform.position;
