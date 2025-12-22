@@ -20,15 +20,24 @@ public class BossAttackTrigger : MonoBehaviour
 
     private void Update()
     {
-        if(state == BossState.Grog && aroundImp != null)
+        if(state == BossState.Grog && aroundImp.gameObject != null)
         {
             Destroy(aroundImp);
         }
     }
 
+    public void ResetCircle()
+    {
+        if(aroundImp.gameObject != null) Destroy(aroundImp);
+    }
+
     private void IdleToAttack()
     {
-        if(!DungeonManager.Instance.bossTrigger || state == BossState.Grog) return;
+        if(!DungeonManager.Instance.bossTrigger || state == BossState.Grog)
+        {
+            count = 0;
+            return;
+        }
 
 
         if(state == BossState.Idle)
@@ -92,7 +101,7 @@ public class BossAttackTrigger : MonoBehaviour
 
     private void ThunderAttack()
     {
-        StartCoroutine(SpawnThunder());
+        if(GameManager.Instance.bossBattle) StartCoroutine(SpawnThunder());
     }
 
     private void OnDisable()

@@ -22,6 +22,7 @@ public class BossPattern : DamagableCtrl
     [SerializeField] private Slider currentBar;
     [SerializeField] private Slider realBar;
     [SerializeField] private Canvas bossUI;
+    [SerializeField] private BossAttackTrigger bat;
     public int phase = 0;
 
     public bool isGrog = false;
@@ -78,6 +79,7 @@ public class BossPattern : DamagableCtrl
             switch (bossState)
             {
                 case BossState.Idle:
+                    yield return new WaitUntil(() => GameManager.Instance.bossBattle);
                     yield return new WaitUntil(() => !DungeonManager.Instance.bossTrigger);
                     yield return new WaitForSeconds(10f);
                     TriggerBoss();
@@ -86,6 +88,7 @@ public class BossPattern : DamagableCtrl
                     break;
                 case BossState.Grog:
                     yield return new WaitUntil(() => isGrog);
+                    bat?.ResetCircle();
                     yield return new WaitForSeconds(15f);
                     DungeonManager.Instance.bossTrigger = false;
                     isGrog = false;
@@ -112,6 +115,7 @@ public class BossPattern : DamagableCtrl
                 currentBar.gameObject.SetActive(false);
                 anim.SetTrigger("Grog");
                 isGrog = true;
+                HP.ModifyHealth(currentHP, statData.HP);
                 bossState = BossState.Grog;
             }
             HP.ModifyHealth(shieldHP, 100f);
